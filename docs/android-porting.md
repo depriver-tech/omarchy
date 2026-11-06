@@ -1,6 +1,6 @@
 # Android device port investigation
 
-This is a development workflow, not an Android installer or a declaration of supported devices. The initial investigation target is the Samsung Galaxy Tab S10 FE; its exact model variant and hardware must be measured before selecting a kernel or boot image. No device has been validated by this work yet.
+This is a development workflow, not an Android installer or a declaration of supported devices. The initial investigation target is the Samsung Galaxy Note10+; its exact model variant and hardware must be measured before selecting a kernel or boot image. No device has been validated by this work yet.
 
 ## Collect a baseline
 
@@ -36,6 +36,6 @@ A Termux/PRoot environment shares Android's kernel and has service-management an
 
 ## References
 
-- [postmarketOS devices and images](https://postmarketos.org/download/): device-specific Linux enablement research; this does not establish support for the Tab S10 FE.
+- [postmarketOS devices and images](https://postmarketos.org/download/): device-specific Linux enablement research; this does not establish support for the Galaxy Note10+.
 - [Termux PRoot-Distro limitations](https://github.com/termux/proot-distro#proot-distro-limitations): constraints for an Android-hosted experiment.
 - [Omarchy lifecycle dispatch](lifecycle-dispatch.md): platform-specific boot and lifecycle integration.
