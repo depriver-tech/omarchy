@@ -4,7 +4,7 @@ This is a development workflow, not an Android installer or a declaration of sup
 
 ## Collect a baseline
 
-Install Android platform-tools on the development host, enable USB debugging on the tablet, connect it by USB, and approve the host on the tablet. Check `adb devices -l` locally. From this checkout run:
+Install Android platform-tools on the development host, enable USB debugging on the device, connect the device by USB, and approve the host on the device. Check `adb devices -l` locally. From this checkout run:
 
 ```sh
 python3 scripts/android-device-report.py > android-device-report.json
@@ -23,7 +23,7 @@ Record evidence for each gate for the exact model variant; do not infer support 
 | Recovery and boot | Documented stock recovery path, bootloader policy, boot image format, partition layout, and a reproducible development boot procedure |
 | Kernel | Maintained kernel source, device tree, firmware requirements and licensing, storage, USB, and input drivers |
 | Graphics | Working DRM/KMS display and compatible accelerated Mesa/EGL stack, followed by an actual Hyprland session |
-| Tablet input | Touch, keyboard, pointer, rotation, and S Pen behavior verified on hardware |
+| Device input | Touch, keyboard, pointer, rotation, and S Pen behavior verified on hardware |
 | Connectivity and audio | Wi-Fi, Bluetooth, audio routing, and cellular operation where applicable |
 | Power | Charging, battery telemetry, thermal control, suspend/resume, and shutdown verified on hardware |
 | Omarchy integration | Arch userspace and package availability, platform detection, lifecycle hooks, installation and update behavior, and recovery testing |

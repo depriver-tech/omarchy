@@ -5,10 +5,13 @@ source "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)/base-test.sh"
 
 python3 - "$ROOT" <<'PY'
 import importlib.util
+import contextlib
+import io
 import pathlib
 import subprocess
 import sys
 import unittest
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location(
   "report", pathlib.Path(sys.argv[1]) / "scripts/android-device-report.py")
@@ -42,6 +45,16 @@ class DeviceReportTest(unittest.TestCase):
           raise error
         with self.assertRaises(type(error)):
           report.collect(run=run)
+
+  def test_cli_failure_is_private_and_emits_no_json(self):
+    out, err = io.StringIO(), io.StringIO()
+    failure = subprocess.CalledProcessError(1, "adb", stderr="private-device-id")
+    with patch.object(report, "collect", side_effect=failure), \
+         contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+      self.assertEqual(report.main(), 1)
+    self.assertEqual(out.getvalue(), "")
+    self.assertNotIn("private-device-id", err.getvalue())
+    self.assertIn("Cannot read device", err.getvalue())
 
 
 unittest.main()
